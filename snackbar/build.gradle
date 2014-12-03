@@ -8,9 +8,9 @@ android {
         applicationId "com.github.mrengineer13.snackbar"
         minSdkVersion 8
         targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
-        versionName project.VERSION_NAME
-        versionCode Integer.parseInt(project.VERSION_CODE)
+        versionName '0.4.0-plume' // project.VERSION_NAME
+        versionCode 7 // Integer.parseInt(project.VERSION_CODE)
     }
 }
 
-apply from: '../maven_push.gradle'
+//apply from: '../maven_push.gradle'
