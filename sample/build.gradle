@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.mrengineer13.snackbar.sample"
-        minSdkVersion 9
+        minSdkVersion Math.max(9, Integer.parseInt(ANDROID_BUILD_MIN_SDK_VERSION))
         targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
         versionCode 7
         versionName "1.6"

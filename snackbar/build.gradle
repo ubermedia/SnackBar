@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.github.mrengineer13.snackbar"
-        minSdkVersion 8
+        minSdkVersion Math.max(8, Integer.parseInt(ANDROID_BUILD_MIN_SDK_VERSION))
         targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
         versionName '0.4.0-plume' // project.VERSION_NAME
         versionCode 7 // Integer.parseInt(project.VERSION_CODE)
