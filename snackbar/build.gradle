@@ -5,12 +5,12 @@ android {
     buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
     defaultConfig {
-        applicationId "com.github.mrengineer13.snackbar"
-        minSdkVersion 8
+        //applicationId "com.github.mrengineer13.snackbar"
+        minSdkVersion Math.max(8, Integer.parseInt(ANDROID_BUILD_MIN_SDK_VERSION))
         targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
-        versionName project.VERSION_NAME
-        versionCode Integer.parseInt(project.VERSION_CODE)
+        versionName '0.4.0-plume' // project.VERSION_NAME
+        versionCode 7 // Integer.parseInt(project.VERSION_CODE)
     }
 }
 
-apply from: '../maven_push.gradle'
+//apply from: '../maven_push.gradle'
