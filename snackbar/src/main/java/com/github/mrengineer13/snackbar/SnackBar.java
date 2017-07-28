@@ -78,6 +78,8 @@ public class SnackBar {
 
     private Context mContext;
 
+    private boolean sbackBarClickable;
+
     public interface OnMessageClickListener {
 
         void onMessageClick(Parcelable token);
@@ -108,7 +110,6 @@ public class SnackBar {
         mContainer.setVisibility(View.GONE);
         mSnackMsg = (TextView) v.findViewById(R.id.snackMessage);
         mSnackBtn = (TextView) v.findViewById(R.id.snackButton);
-        mSnackBtn.setOnClickListener(mButtonListener);
 
         mInAnimationSet = new AnimationSet(false);
 
@@ -425,14 +426,22 @@ public class SnackBar {
         sendOnShow();
         mCurrentSnack = message;
         mSnackMsg.setText(message.mMessage);
-        if (message.mActionMessage != null) {
-            mSnackMsg.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
-            mSnackBtn.setVisibility(View.VISIBLE);
-            mSnackBtn.setText(message.mActionMessage);
-            mSnackBtn.setCompoundDrawablesWithIntrinsicBounds(message.mActionIcon, 0, 0, 0);
-        } else {
-            mSnackMsg.setGravity(Gravity.CENTER);
+        if (sbackBarClickable) {
             mSnackBtn.setVisibility(View.GONE);
+            mSnackMsg.setOnClickListener(mButtonListener);
+            mSnackMsg.setGravity(Gravity.CENTER);
+        } else {
+            if (message.mActionMessage != null) {
+                mSnackBtn.setOnClickListener(mButtonListener);
+                mSnackMsg.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+                mSnackBtn.setVisibility(View.VISIBLE);
+                mSnackBtn.setText(message.mActionMessage);
+                mSnackBtn.setCompoundDrawablesWithIntrinsicBounds(message.mActionIcon, 0, 0, 0);
+            } else {
+                mSnackMsg.setGravity(Gravity.CENTER);
+                mSnackBtn.setVisibility(View.GONE);
+            }
+
         }
 
         if (message.mBtnTextColor != null) {
@@ -650,5 +659,14 @@ public class SnackBar {
         if (mVisibilityChangeListener != null) {
             mVisibilityChangeListener.onShow(mSnacks.size());
         }
+    }
+
+    /**
+     * Setup the whole surface of SnackBar is clickable, action button has visibility GONE
+     *
+     * @param sbackBarClickable
+     */
+    public void setSnackBarClickable(boolean sbackBarClickable) {
+        this.sbackBarClickable = sbackBarClickable;
     }
 }
